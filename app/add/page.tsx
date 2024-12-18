@@ -8,22 +8,28 @@ import { ArrowLeftIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useState } from "react";
 
+import toastr from "toastr";
+
 const TodoItemAdd = () => {
 
     const [title, setTitle] = useState("");
     const [color, setColor] = useState("");
 
     const handleSubmit = async () => {
-        const todo = {
-            title: title,
-            color: color,
-            done: false
-        }
-
-        const status = await addTodoApi(todo);
-
-        if (status) {
-            console.log("ok");
+        if (title) {
+            const todo = {
+                title: title,
+                color: color,
+                done: false
+            }
+    
+            const status = await addTodoApi(todo);
+    
+            if (status) {
+                toastr.success("Successfully added.")
+            }
+        } else {
+            toastr.warning("Please input title of todo.")
         }
     }
 

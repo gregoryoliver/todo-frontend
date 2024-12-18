@@ -19,3 +19,11 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+#toast-container > div {
+  box-shadow : 0 0 12px #000000 !important;
+}
+
+.toast-message {
+  font-size: 14px;
+}

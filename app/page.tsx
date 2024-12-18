@@ -8,6 +8,7 @@ import TodoItem from "@/components/todo/todo-item";
 import Empty from "@/components/todo/empty";
 import { deleteTodoApi, getTodoListApi, updateTodoApi } from "@/lib/api";
 import { useRouter } from "next/navigation";
+import toastr from "toastr";
 
 const TodoList = () => {
   const router = useRouter();
@@ -45,6 +46,7 @@ const TodoList = () => {
 
     if (status) {
       setTodoList(todoList.filter(item => item.id !== id));
+      toastr.success("Successfully deleted.");
     }
   }
 

@@ -8,6 +8,7 @@ import { ArrowLeftIcon, CheckIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import toastr from "toastr";
 
 const TodoItemEdit = () => {
     const [updatedTitle, setUpdatedTitle] = useState("");
@@ -43,7 +44,7 @@ const TodoItemEdit = () => {
         const status = await updateTodoApi(todo, params.id);
 
         if (status) {
-            console.log("ok");
+            toastr.success("Successfully updated.");
         }
     }
 
