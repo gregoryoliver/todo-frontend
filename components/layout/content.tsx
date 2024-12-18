@@ -7,7 +7,7 @@ type Props = {
 const Content: FC<Props> = ({ children }) => {
     return (
         <div className="w-full flex-1 px-4">
-            <div className="mx-auto max-w-[736px] h-full">
+            <div className="mx-auto max-w-[736px] h-full relative py-20">
                 {children}
             </div>
         </div>
