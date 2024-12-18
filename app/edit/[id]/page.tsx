@@ -32,19 +32,20 @@ const TodoItemEdit = () => {
     }, [])
 
     const handleSubmit = async () => {
-        const todo = {
-            title: updatedTitle,
-            color: updatedColor,
-            done
-        }
-
-        console.log(todo);
-        
-
-        const status = await updateTodoApi(todo, params.id);
-
-        if (status) {
-            toastr.success("Successfully updated.");
+        if (updatedTitle) {
+            const todo = {
+                title: updatedTitle,
+                color: updatedColor,
+                done
+            }
+    
+            const status = await updateTodoApi(todo, params.id);
+    
+            if (status) {
+                toastr.success("Successfully updated.");
+            }
+        } else {
+            toastr.warning("Please input title of todo.");
         }
     }
 
