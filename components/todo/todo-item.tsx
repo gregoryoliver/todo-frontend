@@ -9,7 +9,7 @@ export type TodoItemProps = {
     done: number,
     onCheck?: (id: number) => void
     onDelete?: (id: number) => void,
-    onClick?: () => void
+    onClick?: (id: number) => void
 }
 
 const TodoItem: FC<TodoItemProps> = ({
