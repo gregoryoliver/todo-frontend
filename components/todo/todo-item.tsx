@@ -3,16 +3,21 @@ import { CheckCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 
 
-export type TodoItemProps = {
+export type TodoItemType = {
     color: string,
     title: string,
     done: number,
+}
+
+type TodoAction = {
     onCheck?: (id: number) => void
     onDelete?: (id: number) => void,
     onClick?: (id: number) => void
 }
 
-const TodoItem: FC<TodoItemProps> = ({
+type Props = TodoItemType & TodoAction;
+
+const TodoItem: FC<Props> = ({
     color = "#F2F2F2",
     title,
     done = false,
