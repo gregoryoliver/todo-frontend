@@ -6,7 +6,7 @@ import clsx from "clsx";
 export type TodoItemType = {
     color: string,
     title: string,
-    done: number,
+    done: boolean,
 }
 
 type TodoAction = {

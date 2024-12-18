@@ -1,10 +1,32 @@
+"use client"
+
 import ActionButton from "@/components/common/action-button";
 import ColorPanel from "@/components/common/color-panel";
 import CustomInput from "@/components/common/custom-input";
+import { addTodoApi } from "@/lib/api";
 import { ArrowLeftIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { useState } from "react";
 
 const TodoItemAdd = () => {
+
+    const [title, setTitle] = useState("");
+    const [color, setColor] = useState("");
+
+    const handleSubmit = async () => {
+        const todo = {
+            title: title,
+            color: color,
+            done: false
+        }
+
+        const status = await addTodoApi(todo);
+
+        if (status) {
+            console.log("okok");
+        }
+    }
+
     return (
         <div className="">
             <div className="mb-8">
@@ -18,11 +40,12 @@ const TodoItemAdd = () => {
                 <CustomInput
                     placeholder="Ex. Brush you teeth"
                     label="Title"
-                    value=""
+                    value={title}
+                    onChange={setTitle}
                 />
-                <ColorPanel />
+                <ColorPanel onChange={setColor} value={color} />
             </div>
-            <ActionButton label="Add Task" icon={<PlusCircleIcon className="h-4 w-4" />} className="mt-8" />
+            <ActionButton label="Add Task" icon={<PlusCircleIcon className="h-4 w-4" />} className="mt-8" onClick={handleSubmit} />
         </div>
     )
 }

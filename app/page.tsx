@@ -7,10 +7,13 @@ import TodoWrapper from "@/components/todo/todo-wrapper";
 import TodoItem from "@/components/todo/todo-item";
 import Empty from "@/components/todo/empty";
 import { getTodoListApi } from "@/lib/api";
+import { useRouter } from "next/navigation";
 
 const TodoList = () => {
+  const router = useRouter();
+
   const handleClick = () => {
-    console.log('clicked')
+    router.push("/add"); 
   }
 
   const [todoList, setTodoList] = useState([]);
@@ -26,6 +29,8 @@ const TodoList = () => {
       console.error('Error:', error);
     });
   }, [])
+
+  const doneList = todoList.filter(item => item.done);
   
   return (
     <Fragment>
@@ -35,7 +40,7 @@ const TodoList = () => {
         onClick={handleClick}
         className="absolute top-0 transform -translate-y-1/2"
       />
-      <TodoWrapper numberOfDone={5} numberOfTotal={10}>
+      <TodoWrapper numberOfDone={doneList.length} numberOfTotal={todoList.length}>
       {
           todoList.length ? 
             todoList.map(item => {

@@ -24,7 +24,7 @@ const CustomInput: FC<Props> = ({
                 {label}
             </label>
             <input
-                className="outline-none text-xs rounded-md border border-[#333333] bg-[#262626] text-[#333333] px-3 py-3"
+                className="outline-none text-xs rounded-md border border-[#333333] bg-[#262626] text-white px-3 py-3"
                 type="text"
                 placeholder={placeholder}
                 value={value}

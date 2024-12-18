@@ -3,7 +3,7 @@ import { FC } from "react"
 
 type Props = {
     value?: string,
-    onChange?: () => void
+    onChange?: (color: string) => void
 }
 
 const ColorPanel: FC<Props> = ({
@@ -35,9 +35,10 @@ const ColorPanel: FC<Props> = ({
                     colors.map((item, idx) => {
                         return (
                             <div
+                                onClick={() => onChange(item)}
                                 key={idx}
                                 className={clsx(
-                                    `w-12 h-12 rounded-full`,
+                                    `w-12 h-12 rounded-full cursor-pointer`,
                                     value === item && 'border-white border-2'
                                 )}
                                 style={{ backgroundColor: item }}
