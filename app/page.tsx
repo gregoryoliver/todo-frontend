@@ -25,7 +25,7 @@ const TodoList = () => {
         <TodoItem title="Aurora is great" />
         <TodoItem title="Aurora is great" />
         <TodoItem title="Aurora is great" /> */}
-        {/* <Empty /> */}
+        <Empty />
       </TodoWrapper>
     </Fragment>
   )

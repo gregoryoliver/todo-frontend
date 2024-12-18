@@ -20,7 +20,7 @@ const ActionButton: FC<Props> = ({
         <button
             className={
                 clsx(
-                    "w-full py-3 rounded-md text-xs text-[#F2F2F2] bg-[#1E6F9F] outline-none border-none flex justify-center items-center",
+                    "w-full py-3 rounded-md text-xs text-[#F2F2F2] bg-[#1E6F9F] outline-none border-none flex justify-center items-center gap-1",
                     className
                 )
             }
