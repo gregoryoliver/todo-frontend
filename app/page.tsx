@@ -6,7 +6,7 @@ import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import TodoWrapper from "@/components/todo/todo-wrapper";
 import TodoItem from "@/components/todo/todo-item";
 import Empty from "@/components/todo/empty";
-import { getTodoListApi } from "@/lib/api";
+import { deleteTodoApi, getTodoListApi, updateTodoApi } from "@/lib/api";
 import { useRouter } from "next/navigation";
 
 const TodoList = () => {
@@ -31,6 +31,26 @@ const TodoList = () => {
   }, [])
 
   const doneList = todoList.filter(item => item.done);
+
+  const handleUpdate = async (updatedTodo, id) => {
+    const status = await updateTodoApi(updatedTodo, id);
+
+    if (status) {
+      setTodoList(todoList.map(item => item.id === id ? { ...updatedTodo, id } : item));
+    }
+  }
+
+  const handleDelete = async (id: number) => {
+    const status = await deleteTodoApi(id);
+
+    if (status) {
+      setTodoList(todoList.filter(item => item.id !== id));
+    }
+  }
+
+  const handleEdit = (id: number) => {
+    router.push(`/edit/${id}`);
+  }
   
   return (
     <Fragment>
@@ -43,9 +63,9 @@ const TodoList = () => {
       <TodoWrapper numberOfDone={doneList.length} numberOfTotal={todoList.length}>
       {
           todoList.length ? 
-            todoList.map(item => {
+            todoList.map((item, key) => {
               return (
-                <TodoItem key={item.id} title={item.title} done={item.done} />
+                <TodoItem key={key} id={item.id} title={item.title} done={item.done} color={item.color} onCheck={handleUpdate} onDelete={handleDelete} onClick={handleEdit}/>
               )
             })    
             :

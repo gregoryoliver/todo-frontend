@@ -10,6 +10,7 @@ export type TodoItemType = {
 }
 
 type TodoAction = {
+    id: number,
     onCheck?: (id: number) => void
     onDelete?: (id: number) => void,
     onClick?: (id: number) => void
@@ -18,6 +19,7 @@ type TodoAction = {
 type Props = TodoItemType & TodoAction;
 
 const TodoItem: FC<Props> = ({
+    id,
     color = "#F2F2F2",
     title,
     done = false,
@@ -27,7 +29,7 @@ const TodoItem: FC<Props> = ({
 }) => {
     return (
         <div className="p-4 rounded-md flex bg-[#262626] gap-4">
-            <div className="cursor-pointer" onClick={onCheck}>
+            <div className="cursor-pointer" onClick={() => onCheck({title, color, done: !done}, id)}>
                 {
                     done ?
                         <CheckCircleIcon className="w-4 h-4 text-[#5E60CE]" />
@@ -38,13 +40,14 @@ const TodoItem: FC<Props> = ({
             <p
                 className={clsx(
                     `flex-1 text-xs cursor-pointer`,
-                    done ? 'text-[#808080] line-through' : `text-[${color}]`
+                    done && 'text-[#808080] line-through'
                 )}
-                onClick={onClick}
+                style={{color: !done ? color : ''}}
+                onClick={() => onClick(id)}
             >
                 {title}
             </p>
-            <span className="cursor-pointer" onClick={onDelete}>
+            <span className="cursor-pointer" onClick={() => onDelete(id)}>
                 <TrashIcon className="block w-4 h-4 text-[#F2F2F2]" />
             </span>
         </div>

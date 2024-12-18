@@ -23,7 +23,7 @@ const TodoItemAdd = () => {
         const status = await addTodoApi(todo);
 
         if (status) {
-            console.log("okok");
+            console.log("ok");
         }
     }
 
