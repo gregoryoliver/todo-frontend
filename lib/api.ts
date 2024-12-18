@@ -15,7 +15,7 @@ export const addTodoApi = async (todo: TodoItemType) => {
 
 export const updateTodoApi = async (todo: TodoItemType, id: number) => {
     try {
-        let { data } = await axios.put(`${SERVER_URL}/todos/${id}`);
+        let { data } = await axios.put(`${SERVER_URL}/todos/${id}`, todo);
 
         return true
     } catch (err) {
@@ -30,6 +30,16 @@ export const getTodoListApi = async () => {
     } catch (err) {
         console.log(err);
         return [];
+    }
+}
+
+export const getTodoApi = async (id: number) => {
+    try {
+        let { data } = await axios.get(`${SERVER_URL}/todos/${id}}`);
+        return data
+    } catch (err) {
+        console.log(err);
+        return {};
     }
 }
 
